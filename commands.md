@@ -10,8 +10,7 @@ cd mahesh_repo/
 
 Configure Git user details (Global)
 git config --global user.name "Riyansh11"
-git config --global user.email "riyanshgaikwad7@gmail.com
-"
+git config --global user.email "riyanshgaikwad7@gmail.com"
 
 Initialize a new Git repository
 git init

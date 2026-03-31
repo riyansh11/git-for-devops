@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: Check httpd service status
+      ansible.builtin.command: systemctl is-active httpd.service
+      register: http_status
+#      ignore_errors: yes
+
+    - name: Show service status
+      ansible.builtin.debug:
+        msg: "HTTPD service status: {{ http_status.stdout | default('not running') }}"
+
+    - name: Check if openssl is installed
+      ansible.builtin.command: openssl version
+      register: openssl_output
+
+    - name: Show result
+      ansible.builtin.debug:
+        msg: "{{ openssl_output.stdout | default('openssl not installed') }}"
