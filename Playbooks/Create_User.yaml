@@ -1,0 +1,22 @@
+---
+- name: Create users and groups
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Create group
+      group:
+        name: devops
+        state: present
+
+    - name: Create user
+      user:
+        name: mahesh
+        group: devops
+        shell: /bin/bash
+        create_home: yes
+
+    - name: Set password
+      user:
+        name: mahesh
+        password: "{{ 'password123' | password_hash('sha512') }}"

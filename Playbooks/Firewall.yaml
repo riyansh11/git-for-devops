@@ -1,0 +1,16 @@
+---
+- name: Configure firewall
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Allow HTTP port
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+
+    - name: Reload firewall
+      service:
+        name: firewalld
+        state: reloaded

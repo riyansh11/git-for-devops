@@ -1,0 +1,12 @@
+---
+- name: Set permissions
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Set directory permissions
+      file:
+        path: /var/www/html
+        owner: apache
+        group: apache
+        mode: '0755'

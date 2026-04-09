@@ -1,0 +1,13 @@
+---
+- name: Copy configuration file
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Copy file
+      copy:
+        src: files/httpd.conf
+        dest: /etc/httpd/conf/httpd.conf
+        owner: root
+        group: root
+        mode: '0644'

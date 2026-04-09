@@ -1,0 +1,12 @@
+---
+- name: Configure cron jobs
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Add cron job
+      cron:
+        name: "Daily backup"
+        minute: "0"
+        hour: "2"
+        job: "/usr/local/bin/backup.sh"

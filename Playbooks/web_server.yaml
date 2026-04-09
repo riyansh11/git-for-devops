@@ -1,0 +1,32 @@
+---
+- name: Full server setup
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install httpd
+      package:
+        name: httpd
+        state: present
+
+    - name: Start service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Deploy website
+      copy:
+        content: "Welcome to DevOps"
+        dest: /var/www/html/index.html
+
+    - name: Open firewall
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+
+    - name: Reload firewall
+      service:
+        name: firewalld
+        state: reloaded

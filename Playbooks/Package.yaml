@@ -1,0 +1,20 @@
+---
+- name: Install required packages
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install packages using yum/dnf
+      package:
+        name:
+          - httpd
+          - git
+          - vim
+        state: present
+
+
+
+
+
+
+
